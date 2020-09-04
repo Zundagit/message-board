@@ -10,7 +10,8 @@
       <% end %>
     </aside>
     <div class="col-sm-8">
-      <%= render 'microposts/microposts', microposts: @microposts %>
+      <h3 class="my-4">あなたと友人のMicroposts</h3>
+      <%= render 'microposts/microposts', microposts: @microposts%>
     </div>
   </div>
 <% else %>

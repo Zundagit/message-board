@@ -38,10 +38,21 @@ class UsersController < ApplicationController
     @followers = @user.followers.page(params[:page])
     counts(@user)
   end
+  
+  def likes
+    @user = User.find(params[:id])
+    @microposts =@user.feed_favorites.order(id: :desc).page(params[:page])
+  end
 
   private
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+  def correct_user
+    @micropost = current_user.tasks.find_by(id: params[:id])
+    unless @micropost
+      redirect_to root_url
+    end
   end
 end
